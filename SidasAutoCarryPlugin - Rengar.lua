@@ -1,5 +1,4 @@
 
-
 local target
 
 
@@ -26,7 +25,7 @@ local qTime = 0
 
 
 function PluginOnLoad()
-  AutoCarry.SkillsCrosshair.range = 525
+  	AutoCarry.SkillsCrosshair.range = 525
 	AutoCarry.PluginMenu:addParam("Combo", "Use Main Combo With Auto Carry", SCRIPT_PARAM_ONOFF, true)
 	AutoCarry.PluginMenu:addParam("EmpPriority", "Empowered priority:1=Q 2=W 3=E", SCRIPT_PARAM_SLICE, 1, 1, 3, 0)
 	AutoCarry.PluginMenu:addParam("TrowE", "Range to throw E in main combo", SCRIPT_PARAM_SLICE, 250, 1, 525, 0)
@@ -46,13 +45,13 @@ function PluginOnTick()
 	target = AutoCarry.GetAttackTarget()
 	
 	qReady = myHero:CanUseSpell(_Q) == READY
-    wReady = myHero:CanUseSpell(_W) == READY
-    eReady = myHero:CanUseSpell(_E)	== READY
-    rReady = myHero:CanUseSpell(_R) == READY
+    	wReady = myHero:CanUseSpell(_W) == READY
+   	eReady = myHero:CanUseSpell(_E)	== READY
+   	rReady = myHero:CanUseSpell(_R) == READY
 	qCooldown = myHero:CanUseSpell(_Q) ~= READY
-    wCooldown = myHero:CanUseSpell(_W) ~= READY
-    eCooldown = myHero:CanUseSpell(_E)	~= READY
-    rCooldown = myHero:CanUseSpell(_R) ~= READY	
+    	wCooldown = myHero:CanUseSpell(_W) ~= READY
+    	eCooldown = myHero:CanUseSpell(_E)	~= READY
+    	rCooldown = myHero:CanUseSpell(_R) ~= READY	
 	
 	if AutoCarry.PluginMenu.TripleQ and myHero.mana < 4 and DoingTripleQ == false then
 		PrintChat("Not enough Fury, Triple Q DISABLED")

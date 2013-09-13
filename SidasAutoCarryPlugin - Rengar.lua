@@ -110,8 +110,8 @@
             if target ~= nil then
                 
 			HealthPct = (myHero.health / myHero.maxHealth)*100
-
-			if HealthPct < UseWPct and myHero.mana == 5 and LowHealthW then
+			
+			if HealthPct < AutoCarry.PluginMenu.UseWPct and myHero.mana == 5 and LowHealthW then
 				CastSpell(_W)
 			end
 			

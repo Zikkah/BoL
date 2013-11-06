@@ -107,6 +107,14 @@
 			if DoingTripleQ == false then
 				AutoCarry.CanAttack = true
 			end
+			
+		if myHero.dead then
+			qCount = 0
+			DoingTripleQ = false
+			AutoCarry.PluginMenu.TripleQ = false
+			SkipMe = false
+			JumpTime = nil
+		end
     end
      
     function Combo()

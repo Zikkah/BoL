@@ -8,15 +8,16 @@
             ]]--
            
     local target
-     
     -- spells
     local qReady
     local qCooldown
-     
+    local qCount = 0
     local wReady
     local wCooldown
     local wRange = 475
-     
+    local starttime = 0
+
+    
     local eReady
     local eCooldown
     local eRange = 525
@@ -24,10 +25,11 @@
     local rReady
     local rCooldown
      
-     
+    local SkipMe = false
     local DoingTripleQ = false
-    local qTime = 0
-     
+    local AllowQ = true
+    local PassiveMax = false
+    
     -- items
     local BWCSlot, HXGSlot, BRKSlot, SheenSlot, TrinitySlot, LBSlot, RSHSlot, TMTSlot, STDSlot = nil, nil, nil, nil, nil, nil, nil, nil, nil
     local BWCREADY, HXGREADY, BRKREADY, RSHREADY, TMTREADY, STDREADY, IREADY = false, false, false, false, false, false, false
@@ -61,7 +63,9 @@
      
             target = AutoCarry.GetAttackTarget()
             CheckCooldowns()
-     
+			if AutoCarry.CanAttack == false then
+				myHero:MoveTo(mousePos.x, mousePos.z)
+			end
 
 			
             if AutoCarry.PluginMenu.TripleQ and myHero.mana < 4 and DoingTripleQ == false then
@@ -85,7 +89,7 @@
             end
            
             if AutoCarry.PluginMenu.TripleQ and AutoCarry.PluginMenu.Combo and AutoCarry.MainMenu.AutoCarry then
-                    TripleQ()
+					TripleQ()
             end    
      
             if AutoCarry.PluginMenu.Harass and AutoCarry.MainMenu.MixedMode then
@@ -160,66 +164,63 @@
      
     end
      
-     
+
+	 
     function TripleQ()
-           
-                    if myHero.mana == 4 and rReady then
-                           
-                            if qReady and rReady then
-                                   
-                                    AutoCarry.CanAttack = false
-                                    CastSpell(_Q)
-                                    CastSpell(_R)
-                                   
-                                    qTime = os.clock()
-                                                                   
-                                    DoingTripleQ = true
-                                                                   
-                            end    
-                    end
-           
-           
-                    if myHero.mana == 5 and rReady then
-                           
-                           
-                            if qReady and rReady then
-                                   
-                                    AutoCarry.CanAttack = false
-                                    CastSpell(_Q)
-                                    CastSpell(_R)
-     
-                                    qTime = os.clock()
-                                                                   
-                                    DoingTripleQ = true
-                            end    
-                    end
-           
-                   
-                    if rReady == false and os.clock() - qTime > 3.75 and DoingTripleQ == true then
-                           
-                            AutoCarry.CanAttack = true
-								if ValidTarget(target) then
-                                    if qReady and os.clock() - qTime > 4.25 then
-                                            CastSpell(_Q)
-                                    end
-                                    if GetDistance(target) <= 350 then     
-                                            if STDREADY then CastSpell(STDSlot, target) end
-                                            if BRKREADY then CastSpell(BRKSlot, target) end
-                                            if BWCREADY then CastSpell(BWCSlot, target) end
-                                            if TMTREADY then CastSpell(TMTSlot) end
-                                            if RSHREADY then CastSpell(RSHSlot) end
-                                            if HXGREADY then CastSpell(HXGSlot, target) end
-                                    end
-								end
-                    end
-                   
-                    if os.clock() - qTime > 5.6 then
-                           
-                            DoingTripleQ = false
-                            AutoCarry.PluginMenu.TripleQ = false
-                           
-                            Combo()
-                    end
+	
+		DoingTripleQ = true
+		
+		if not SkipMe then
+			AutoCarry.CanAttack = false
+			AutoCarry.CanMove = true
+			if rReady then
+				CastSpell(_R)
+			end
+			if PassiveMax then
+				if AllowQ then
+					CastSpell(_Q)
+				else
+					SkipMe = true
+				end
+			end
+		else
+			if myHero.mana == 4 then
+				AutoCarry.CanAttack = true
+				JumpTime = os.clock()
+			end
+			if AutoCarry.CanAttack == true then
+				if AllowQ then
+					CastSpell(_Q)
+				end
+			end
+			if GetDistance(target) <= 350 then
+                if STDREADY then CastSpell(STDSlot, target) end
+                if BRKREADY then CastSpell(BRKSlot, target) end
+                if BWCREADY then CastSpell(BWCSlot, target) end
+                if TMTREADY then CastSpell(TMTSlot) end
+                if RSHREADY then CastSpell(RSHSlot) end
+                if HXGREADY then CastSpell(HXGSlot, target) end
+			end
+		end
+		
+		if qCount >= 3   then
+			PrintChat("3rd q cast, going normall combo")
+			qCount = 0
+			DoingTripleQ = false
+			AutoCarry.PluginMenu.TripleQ = false
+			SkipMe = false
+			JumpTime = nil
+		end
+		if JumpTime ~= nil and os.clock() - JumpTime > 1.5 then -- fail safe shit
+			PrintChat("3rd q cast, going normall combo")
+			qCount = 0
+			DoingTripleQ = false
+			AutoCarry.PluginMenu.TripleQ = false
+			SkipMe = false
+			JumpTime = nil
+
+		end
+
            
     end
      
@@ -275,7 +276,8 @@
      
      
     function PluginOnDraw()
-     
+
+
             if AutoCarry.PluginMenu.TripleQ == true and DoingTripleQ == false then
                     PrintFloatText(myHero, 0, "Triple Q Active")
             end
@@ -430,3 +432,32 @@
             IREADY = (ignite ~= nil and myHero:CanUseSpell(ignite) == READY)
     end
 
+function PluginOnProcessSpell(object,spell)
+if spell.name:find("RengarQ") and DoingTripleQ then
+	qCount = qCount + 1
+
+	AllowQ = false
+end
+
+end
+
+
+function PluginOnCreateObj(obj)
+if obj.name:find("RengarQ_tar") then
+	AllowQ = true
+end
+if obj.name:find("RengarPassiveMax") then
+	PassiveMax = true
+end
+end
+
+function PluginOnDeleteObj(obj)
+
+if obj.name:find("RengarPassiveMax") then
+	PassiveMax = false
+end
+if obj.name:find("RengarQReady") then
+	AllowQ = true
+end
+
+end

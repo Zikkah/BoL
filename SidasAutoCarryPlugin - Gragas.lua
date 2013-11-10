@@ -278,7 +278,10 @@ function GlobalInfo()
 	else
 		GotMana = false
 	end
-
+	if wTime ~= nil and GetGameTimer()-wTime > 1 then 
+		AutoCarry.CanMove = true
+		wTime = nil
+	end
 	
 	if ValidTarget(Target) then
 		MecPos = GetAoESpellPosition(400, Target)
@@ -396,6 +399,7 @@ function PluginOnProcessSpell(object,spell)
 		if spell.name:find("GragasDrunkenRage") then -- W casted
 			ChannelingW = true
 			AutoCarry.CanMove = false
+			wTime = GetGameTimer()
 		end
 		
 	end
@@ -920,7 +924,7 @@ HealthLeft = 0
 PctLeft = 0
 BarPct = 0
 EStart = nil
-
+wTime = nil
 orange = 0xFFFFE303
 green = ARGB(255,0,255,0)
 blue = ARGB(255,0,0,255)

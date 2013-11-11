@@ -392,6 +392,7 @@ function GlobalInfo()
 			EStart = nil
 		
 	end
+
 end
 
 
@@ -603,109 +604,110 @@ end
 function ScriptMenu()
 	
 	
-	DrawRectangleOutline(MenuX, MenuY, 130, 300, green, 1)
+	DrawRectangleOutline(MenuX+GMenu.HudPosX, MenuY+GMenu.HudPosY, 130, 300, green, 1)
 	
 	
 -- Menu text
 
-	DrawText("Zikkah's Gragas",15, MenuX+17, MenuY ,orange)
-	DrawText("---Q Settings:", 15, MenuX+9, MenuY+11 ,orange)
-	DrawText("Auto KS", 15, MenuX+9, MenuY+22 ,GetColor(GMenu.KsQ))
+	DrawText("Zikkah's Gragas",15, MenuX+GMenu.HudPosX+17, MenuY+GMenu.HudPosY ,orange)
+	DrawText("---Q Settings:", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+11 ,orange)
+	DrawText("Auto KS", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+22 ,GetColor(GMenu.KsQ))
 	
-	DrawText("---W Settings:", 15, MenuX+9, MenuY+44 ,orange)
-	DrawText("Auto W < " .. tostring(GMenu.ManaPct) .. "%", 15, MenuX+9, MenuY+55 ,GetColor(GMenu.AutoW))
+	DrawText("---W Settings:", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+44 ,orange)
+	DrawText("Auto W < " .. tostring(GMenu.ManaPct) .. "%", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+55 ,GetColor(GMenu.AutoW))
 
 	
-	DrawText("---E Settings   ",15, MenuX+9, MenuY+77 ,orange)	
-	DrawText("Use in Combo", 15, MenuX+9, MenuY+88 ,GetColor(GMenu.UseE))
---	DrawText("Ks R", 15, MenuX+9, MenuY+99 ,GetColor(GMenu.KsR))
+	DrawText("---E Settings   ",15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+77 ,orange)	
+	DrawText("Use in Combo", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+88 ,GetColor(GMenu.UseE))
+--	DrawText("Ks R", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+99 ,GetColor(GMenu.KsR))
 
 	
-	DrawText("---R Settings",15, MenuX+9, MenuY+110 ,orange)	
-	DrawText("Pull Killable", 15, MenuX+9, MenuY+121 ,GetColor(GMenu.PullKillable))
-	DrawText("Auto KS", 15, MenuX+9, MenuY+132 ,GetColor(GMenu.KsR))
+	DrawText("---R Settings",15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+110 ,orange)	
+	DrawText("Pull Killable", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+121 ,GetColor(GMenu.PullKillable))
+	DrawText("Auto KS", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+132 ,GetColor(GMenu.KsR))
 
 	
-	DrawText("---Teamfight",15, MenuX+9, MenuY+154 ,orange)	
-	DrawText("No E in combo", 15, MenuX+9, MenuY+165 ,GetColor(GMenu.DontETeamfight))
-	DrawText("No ulti in combo", 15, MenuX+9, MenuY+176 ,GetColor(GMenu.DontUltiTeamfight))
-	DrawText("Auto MEC ulti Ks(" .. tostring(GMenu.MecAmmount) .. ")", 15, MenuX+9, MenuY+187 ,GetColor(GMenu.MecKsR))
+	DrawText("---Teamfight",15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+154 ,orange)	
+	DrawText("No E in combo", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+165 ,GetColor(GMenu.DontETeamfight))
+	DrawText("No ulti in combo", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+176 ,GetColor(GMenu.DontUltiTeamfight))
+	DrawText("Auto MEC ulti Ks(" .. tostring(GMenu.MecAmmount) .. ")", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+187 ,GetColor(GMenu.MecKsR))
 	
-	DrawText("Auto Pull:", 15, MenuX+9, MenuY+198 ,GetColor(GMenu.AutoPull))
+	DrawText("Auto Pull:", 15, MenuX+GMenu.HudPosX+9, MenuY+GMenu.HudPosY+198 ,GetColor(GMenu.AutoPull))
 	
 	-- Enemy names	
-	if EnemyTable[1] ~= nil then DrawText(EnemyTable[1].Name,15, MenuX+50, MenuY+209 ,GetColor(EnemyTable[1].PeelMe)) end
-	if EnemyTable[2] ~= nil then DrawText(EnemyTable[2].Name,15, MenuX+50, MenuY+220 ,GetColor(EnemyTable[2].PeelMe)) end
-	if EnemyTable[3] ~= nil then DrawText(EnemyTable[3].Name,15, MenuX+50, MenuY+231 ,GetColor(EnemyTable[3].PeelMe)) end
-	if EnemyTable[4] ~= nil then DrawText(EnemyTable[4].Name,15, MenuX+50, MenuY+242 ,GetColor(EnemyTable[4].PeelMe)) end
-	if EnemyTable[5] ~= nil then DrawText(EnemyTable[5].Name,15, MenuX+50, MenuY+253 ,GetColor(EnemyTable[5].PeelMe)) end
+	if EnemyTable[1] ~= nil then DrawText(EnemyTable[1].Name,15, MenuX+GMenu.HudPosX+50, MenuY+GMenu.HudPosY+209 ,GetColor(EnemyTable[1].PeelMe)) end
+	if EnemyTable[2] ~= nil then DrawText(EnemyTable[2].Name,15, MenuX+GMenu.HudPosX+50, MenuY+GMenu.HudPosY+220 ,GetColor(EnemyTable[2].PeelMe)) end
+	if EnemyTable[3] ~= nil then DrawText(EnemyTable[3].Name,15, MenuX+GMenu.HudPosX+50, MenuY+GMenu.HudPosY+231 ,GetColor(EnemyTable[3].PeelMe)) end
+	if EnemyTable[4] ~= nil then DrawText(EnemyTable[4].Name,15, MenuX+GMenu.HudPosX+50, MenuY+GMenu.HudPosY+242 ,GetColor(EnemyTable[4].PeelMe)) end
+	if EnemyTable[5] ~= nil then DrawText(EnemyTable[5].Name,15, MenuX+GMenu.HudPosX+50, MenuY+GMenu.HudPosY+253 ,GetColor(EnemyTable[5].PeelMe)) end
 
 	-- Menu Controls
 	if IsKeyDown(0x01) then
 		if not Pressed then 
 		
 			-- Q Menu Controls
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 100 and MouseScreen.y > MenuY + 23 and MouseScreen.y < MenuY+33  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 100 and MouseScreen.y > MenuY+GMenu.HudPosY+ 23 and MouseScreen.y < MenuY+GMenu.HudPosY+33  then
 				GMenu.KsQ = not GMenu.KsQ
 			end
 			
 			-- W menu controls
 
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 100 and MouseScreen.y > MenuY + 56 and MouseScreen.y < MenuY+66  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 100 and MouseScreen.y > MenuY+GMenu.HudPosY+ 56 and MouseScreen.y < MenuY+GMenu.HudPosY+66  then
 				GMenu.AutoW = not GMenu.AutoW
 			end	
 
 	
 			-- E menu controls
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 100 and MouseScreen.y > MenuY + 89 and MouseScreen.y < MenuY+99  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 100 and MouseScreen.y > MenuY+GMenu.HudPosY+ 89 and MouseScreen.y < MenuY+GMenu.HudPosY+99  then
 				GMenu.UseE = not GMenu.UseE
 			end	
-	--[[		if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 100 and MouseScreen.y < MenuY+110  then
+	--[[		if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 100 and MouseScreen.y < MenuY+GMenu.HudPosY+110  then
 				GMenu.GapcloseK = not GMenu.GapcloseK
 			end	
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 111 and MouseScreen.y < MenuY+121  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 111 and MouseScreen.y < MenuY+GMenu.HudPosY+121  then
 				GMenu.GapcloseP = not GMenu.GapcloseP
 			end			]]
 
 			-- r menu controls
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 122 and MouseScreen.y < MenuY+132  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 122 and MouseScreen.y < MenuY+GMenu.HudPosY+132  then
 				GMenu.PullKillable = not GMenu.PullKillable
 			end						
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 133 and MouseScreen.y < MenuY+143  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 133 and MouseScreen.y < MenuY+GMenu.HudPosY+143  then
 				GMenu.KsR = not GMenu.KsR
 			end			
 			
 			
 			-- Teamfight menu controls
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 166 and MouseScreen.y < MenuY+176  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 166 and MouseScreen.y < MenuY+GMenu.HudPosY+176  then
 				GMenu.DontETeamfight = not GMenu.DontETeamfight
 			end	
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 177 and MouseScreen.y < MenuY+187  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 177 and MouseScreen.y < MenuY+GMenu.HudPosY+187  then
 				GMenu.DontUltiTeamfight = not GMenu.DontUltiTeamfight
 			end	
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 188 and MouseScreen.y < MenuY+198  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 188 and MouseScreen.y < MenuY+GMenu.HudPosY+198  then
 				GMenu.MecKsR = not GMenu.MecKsR
 			end			
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 199 and MouseScreen.y < MenuY+209  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 199 and MouseScreen.y < MenuY+GMenu.HudPosY+209  then
 				GMenu.AutoPull = not GMenu.AutoPull
 			end						
 			
 			
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 210 and MouseScreen.y < MenuY+220  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 210 and MouseScreen.y < MenuY+GMenu.HudPosY+220  then
+				
 				EnemyTable[1].PeelMe = not EnemyTable[1].PeelMe
 				
 				
 			end		
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 221 and MouseScreen.y < MenuY+231  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 221 and MouseScreen.y < MenuY+GMenu.HudPosY+231  then
 				EnemyTable[2].PeelMe = not EnemyTable[2].PeelMe
 			end		
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 232 and MouseScreen.y < MenuY+242  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 232 and MouseScreen.y < MenuY+GMenu.HudPosY+242  then
 				EnemyTable[3].PeelMe = not EnemyTable[3].PeelMe
 			end		
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 243 and MouseScreen.y < MenuY+253  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 243 and MouseScreen.y < MenuY+GMenu.HudPosY+253  then
 				EnemyTable[4].PeelMe = not EnemyTable[4].PeelMe
 			end	
-			if MouseScreen.x > MenuX+9 and MouseScreen.x < MenuX + 110 and MouseScreen.y > MenuY + 254 and MouseScreen.y < MenuY+264  then
+			if MouseScreen.x > MenuX+GMenu.HudPosX+9 and MouseScreen.x < MenuX+GMenu.HudPosX+ 110 and MouseScreen.y > MenuY+GMenu.HudPosY+ 254 and MouseScreen.y < MenuY+GMenu.HudPosY+264  then
 				EnemyTable[5].PeelMe = not EnemyTable[5].PeelMe
 			end				
 		end
@@ -920,7 +922,9 @@ function Menu()
 			GMenu:addParam("ShowE","Draw E range", SCRIPT_PARAM_ONOFF, true)
 			GMenu:addParam("ShowR","Draw R range", SCRIPT_PARAM_ONOFF, true)
 			GMenu:addParam("DisableDraw","Disable all visuals", SCRIPT_PARAM_ONOFF, false)
-			
+			GMenu:addParam("HudPosX","In-Game Hud X", SCRIPT_PARAM_SLICE, 75, 0, 2000, 0)
+			GMenu:addParam("HudPosY","In-Game Hud Y", SCRIPT_PARAM_SLICE, 400, 0, 600, 0)
+
 			GMenu.KsQ = true
 			GMenu.HarassQ = true
 			GMenu.AutoW = true
@@ -982,8 +986,10 @@ orange = 0xFFFFE303
 green = ARGB(255,0,255,0)
 blue = ARGB(255,0,0,255)
 red = ARGB(255,255,0,0)
-MenuX = WINDOW_W/100*86
-MenuY = WINDOW_H/100*38
+MenuX = 0
+MenuY = 0
+--MenuX = 800
+--MenuY = 200
 MouseScreen = WorldToScreen(D3DXVECTOR3(mousePos.x, mousePos.y, mousePos.z))
 
 

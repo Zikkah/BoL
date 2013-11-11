@@ -247,7 +247,7 @@ function AutoSpells()
 		CastSpell(_W)
 	end
 	if ChannelingW and AreaEnemyCount(myHero, 1000) >= 2 then
-		AutoCarry.CanMove = true
+		moveToCursor()
 	end
 	for _, enemy in pairs(GetEnemyHeroes()) do
 		if ValidTarget(enemy) then

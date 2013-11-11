@@ -115,7 +115,7 @@ function Combo()
 end
 
 function CastE(unit)	
-	if GMenu.DontETeamfight and AreaEnemyCount(unit, 700) >= 2 then return
+	if GMenu.DontETeamfight and AreaEnemyCount(unit, 700) >= 1 then return
 	else
 	
 		if eReady and GMenu.UseE then
@@ -604,8 +604,6 @@ function ScriptMenu()
 	
 	
 	DrawRectangleOutline(MenuX, MenuY, 130, 300, green, 1)
-	DrawText(tostring((manacalc)),15, 100, 100 ,orange)
-
 	
 	
 -- Menu text

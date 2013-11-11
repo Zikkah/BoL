@@ -908,11 +908,11 @@ function Menu()
 			GMenu:addParam("KsR","Auto KS", SCRIPT_PARAM_ONOFF, true)
 			
 			GMenu:addParam("sep", "---- [ Teamfigt ] ----", SCRIPT_PARAM_INFO, "")
+			GMenu:addParam("DontETeamfight","Dont use E", SCRIPT_PARAM_ONOFF, true)
 			GMenu:addParam("DontUltiTeamfight","Dont use Ulti", SCRIPT_PARAM_ONOFF, true)
 			GMenu:addParam("MecKsR","MEC:KS with ulti:", SCRIPT_PARAM_ONOFF, true)
 			GMenu:addParam("MecAmmount","MEC:Killable with ult:", SCRIPT_PARAM_SLICE, 2, 2, 5, 0)
 
-			GMenu:addParam("DontETeamfight","Dont use E", SCRIPT_PARAM_ONOFF, true)
 			GMenu:addParam("AutoPull","Auto Pull", SCRIPT_PARAM_ONOFF, true)
 			
 			GMenu:addParam("sep", "---- [ Draw ] ----", SCRIPT_PARAM_INFO, "")
@@ -924,12 +924,13 @@ function Menu()
 			GMenu:addParam("DisableDraw","Disable all visuals", SCRIPT_PARAM_ONOFF, false)
 			
 			GMenu.KsQ = true
+			GMenu.HarassQ = true
 			GMenu.AutoW = true
 			GMenu.UseE = true
 			GMenu.PullKillable = true
 			GMenu.KsR = true
 			GMenu.MecKsR = true
-			
+			GMenu.DontETeamfight = true
 			GMenu.DontUltiTeamfight = true
 			GMenu.AutoPull = false
 			

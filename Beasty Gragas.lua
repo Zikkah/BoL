@@ -1038,7 +1038,7 @@ end
 
 
 ------------------
--- 	On Load		--
+-- Orbwalkstuff --
 ------------------
 function trueRange()
 	return myHero.range + GetDistance(myHero.minBBox)

@@ -115,7 +115,7 @@ function Combo()
 end
 
 function CastE(unit)	
-	if GMenu.DontETeamfight and AreaEnemyCount(unit, 700) >= 1 then return
+	if GMenu.DontETeamfight and AreaEnemyCount(unit, 700) >= 2 then return
 	else
 	
 		if eReady and GMenu.UseE then
